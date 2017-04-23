@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+<title>Life-Space</title>
+<style>
+body,div{ margin: 0;padding:0 ;background:#fff;}
+div { position: absolute; }
+.text-layer { z-index: 1; }
+</style>
+</head>
+
+<!--移动端版本兼容 -->
+<script type="text/javascript">
+         var ww =  parseInt(window.screen.width);
+         var hh =  parseInt(window.screen.height);
+		 var phoneWidth= (ww>hh)?hh:ww;
+         var phoneScale = phoneWidth/640;
+         var ua = navigator.userAgent;
+         if (/Android (\d+\.\d+)/.test(ua)){
+                   var version = parseFloat(RegExp.$1);
+                   if(version>2.3){
+                            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+                   }else{
+                            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+                   }
+         } else {
+                   document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+         }
+</script>
+<!--移动端版本兼容 end -->
+<body data-img-root-dir="" > 
+<div class="weChat_Bridge4" style="width: 270px; height: 26px; left: 187px; top: 454px;  background-image: url('img/0_WeChat_Bridge/weChat_Bridge4.png');"></div>
+<div class="weChat_Bridge3" style="width: 61px; height: 65px; left: 563px; top: 17px;  background-image: url('img/0_WeChat_Bridge/weChat_Bridge3.png');"></div>
+<div class="weChat_Bridge1" style="width: 299px; height: 59px; left: 171px; top: 350px;  background-image: url('img/0_WeChat_Bridge/weChat_Bridge1.png');"></div>
+
+</body>
+</html>

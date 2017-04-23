@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="no-js" lang=""><head> 
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Life-Space</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/main.css"> 
+<link rel="stylesheet" type="text/css" href="css/materialize.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/bgcolor.css"> 
+<!--[if IE 9]><link rel="stylesheet" type="text/css" href="http://www.taylormadegolf.cn/css/ie9.css"><![endif]-->
+<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="http://www.taylormadegolf.cn/css/ie.css"><![endif]--> 
+</head>
+<body data-img-root-dir="" style="background-color:white"> 
+				
+<div class="main-body">	
+	<!--------菜单开始-------->
+	<div class="header" style="position:absolute;z-index:9999; ">
+  		<div class="logo">
+			<a onclick="track('menu-click-logo');" href="index.html"><img  style="width:100%" src="img/ls-logo.png" alt=""></a>
+		</div>
+		<div class="menuIcon"><img src="img/nav.png" alt=""> </div>
+		<div class="top-menu">
+			<ul class="ul-root">
+				<li id="submenu-hotdot"><a href="javascript:void(0)" onclick="myMenu.toggleSubMenu();">我们的产品
+				<img class="menuarrow-down" src="img/272_qrcode/arrow_down.png" />
+				</a>		
+				<ul class="sub-menu" style="width: 162px; height: 200px; left: 1131px; top: 91px;background-color:#fff;display:none;"> 
+						<li class="sub-li"><a onclick="track('menu-click-producelist1');" href="producelist1.html" class="active">成人</a></li>
+						<li class="sub-li"><a onclick="track('menu-click-producelist2');" href="producelist2.html" class="active">妇女&nbsp;&amp;&nbsp;怀孕</a></li>
+						<li class="sub-li"><a onclick="track('menu-click-producelist3');" href="producelist3.html" class="active">宝宝</a></li>
+						<li class="sub-li"><a onclick="track('menu-click-producelist4');" href="producelist4.html" class="active">儿童</a></li>
+					</ul> </li>
+				<li><a onclick="track('menu-click-about');" href="about.html">关于我们</a></li>
+				<li><a onclick="track('menu-click-why');" href="why.html">为什么选择益生菌</a></li>
+				<li><a onclick="track('menu-click-FAQ');" href="FAQ.html">常见问题及解答 </a></li>
+				<li><span>联系我们</span>				<span><a class="nav-icon-1" onclick="track('menu-click-weibo');" href="http://www.weibo.com/5973559206/profile?topnav=1&wvr=6" class="top-links-sm" target="_blank"><img class="icon-white-on-hover menu-wb" src="img/icon-wb_white.png" alt=""></a></span>
+				<span><a class="nav-icon-1" href="javascript:void(0)" onclick="track('menu-qrcode-toggle');return myQrcode.toggle();" class="top-links-sm" target="_blank"><img id="qrcode-hotdot" class="icon-white-on-hover menu-wc" src="img/icon-wc_white.png" alt=""></a></span>				<span><a class="nav-icon-1" onclick="track('menu-click-babytree');" href="http://www.babytree.com/user/showuser.php?uid=u123946148552&tab=center" class="top-links-sm" target="_blank"><img id="qrcode-hotdot" class="icon-white-on-hover menu-babytree" src="img/icon-babytree_white.png" alt=""></a></span>
+				</li>
+			</ul>
+		</div>
+		<div class="clerfix"></div> 
+	</div>  
+	<!--------菜单结束-------->
+	
+	
+				
+		
+	<!--------二维码开始--------> 
+	<div class="overlay" style="display:none;"> 
+		<div class="pp2"> 
+			<div class="wrap2">
+				<div class="qrcodeX">
+					<a href="javascript:void(0)" onclick="track('close-qrcode');myLS1Overlay.hide();"><img src="img/1.1_Overlay/btnX.png" /></a>
+				</div>
+				<div class="qrblock"> 
+					<p>扫描二维码，关注我们！</p>
+					<div class="qrcode"><img style="width:100%" src="img/1.1_Overlay/overlay4.png" /> </div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!--------二维码结束--------> 
+	<!--------外框开始--------> 
+	<div class="Frames-top" style="position:absolute;width: 100%; height: 25px; left: 0px; top: -3px;  background-image: url('img/frame/Frames_top.png');"></div>
+	<div class="Frames-bottom Frames-bottom-home" style="position:absolute;width: 100%; height: 25px; left: 0px; bottom: 0px;  background-image: url('img/frame/Frames_bottom.png');"></div>
+	<div class="Frames-left" style="position:absolute;width: 25px; height: 100%; left: 0px; top: -4px;  background-image: url('img/frame/Frames_left.png');"></div>
+	<div class="Frames-right" style="position:absolute;width: 25px; height: 100%; right: 0px; top: -4px;  background-image: url('img/frame/Frames_right.png');"></div>
+	<!--------外框结束--------> 
+	<div id="father-bg" style="overflow:hidden"> </div>
+				
+	<!--<img src="img/t3.png" id="arrow-down" style="width: 150px;position: absolute;bottom: 10px;left: 50%;margin-left: -75px;"></img>
+	<img src="img/t4.png" id="arrow-top" style="width: 60px;position: absolute;bottom: 40px;right: 40px;"></img>
+	-->
+		<div class="little-Navi-parent"> 
+			<div id="little-Navi"></div>
+			<div id="dot_big">
+				<canvas id="dotcanvas" width="44" height="42"></canvas>
+				<div id="dot_big_out"><img src="img/t2.png" ></div>
+			</div> 
+		</div>
+			 
+		<div class="tit-frame" id="home-frame-bg">
+			<div class="tit-frame-inner"> 
+				<img class="frame-img" src="img/frame.png"/> 
+			</div>
+		</div> 
+	 
+	<div class="tit-frame" id="home-frame-txt">
+		<div class="tit-frame-inner">
+			<div class="mb10"  id="frame1">
+				
+	<div class="wrap-wrap">
+		<div class="wrap">
+			<div class="verticalWrap">
+				<div class="vertical">
+					<center>
+						<div class="home-frm-ele home-line1">我们的产品</div> 
+						<div class="home-frm-ele unselectable home-line2" unselectable="on">搜索所有&nbsp;Life-Space&nbsp;产品</div> 
+						<div class="home-frm-ele">  
+							<a class="unselectable home-line3" unselectable="on" onclick="track('home-page-click-produce-link');" href="producelist1.html">
+								访问所有
+								<img class="home-arrow" src="img/home/arrow_white.png" />
+							</a> 
+							  
+						</div> 
+					</center>
+				
+				</div> 
+				</div> 
+				</div> 
+				</div> 
+				
+			</div> 
+			<div class="mb10"  id="frame2">  
+	<div class="wrap-wrap">
+		<div class="wrap">
+			<div class="verticalWrap">
+				<div class="vertical">
+					   <div class="home-frm-ele home-line1">关于我们</div> 
+						<div class="home-frm-ele unselectable home-line2" unselectable="on">澳大利亚进口品牌，符合澳大利亚质检标准</div> 
+					   <div class="home-frm-ele">
+						<a class="unselectable home-line3" unselectable="on" onclick="track('home-page-click-about-link');" href="about.html"> 
+							了解更多
+							<img class="home-arrow" src="img/home/arrow_white.png" />
+						</a> 
+						</div> 
+				</div> 
+				</div> 
+				</div> 
+				</div> 
+			</div>  
+				
+			<div class="mb10"  id="frame3">  
+	<div class="wrap-wrap">
+		<div class="wrap">
+			<div class="verticalWrap">
+				<div class="vertical">
+					   <div class="home-frm-ele home-line1">为什么选择益生菌</div>
+					 
+						<div class="home-frm-ele unselectable home-line2" unselectable="on">了解为什么益生菌对健康有益</div> 
+					   <div class="home-frm-ele">
+						<a class="unselectable home-line3" unselectable="on" onclick="track('home-page-click-why-link');" href="why.html">了解更多
+							<img class="home-arrow" src="img/home/arrow_white.png" />
+						</a> 
+						</div> 
+				</div> 
+				</div> 
+				</div> 
+				</div> 
+			</div>  
+			<div class="mb10"  id="frame4">  
+	<div class="wrap-wrap">
+		<div class="wrap">
+			<div class="verticalWrap">
+				<div class="vertical"> 
+						<div class="home-frm-ele unselectable home-line1" unselectable="on">常见问题及解答</div>
+						<div class="home-frm-ele unselectable home-line2" unselectable="on">益生菌相关问题全解答</div> 
+					   <div class="home-frm-ele">
+						<a class="unselectable home-line3" unselectable="on" onclick="track('home-page-click-faq-link');" href="FAQ.html">了解更多
+							<img class="home-arrow" src="img/home/arrow_white.png" />
+						</a> 
+						</div> 
+				</div> 
+				</div> 
+				</div> 
+				</div> 
+			</div> 
+			<div class="mb10"  id="frame5">  
+	<div class="wrap-wrap">
+		<div class="wrap">
+			<div class="verticalWrap">
+				<div class="vertical"> 
+						<div class="home-frm-ele unselectable home-line1" unselectable="on">联系我们</div>
+						<div class="home-frm-ele unselectable home-line2" unselectable="on">获得&nbsp;Life-Space&nbsp;所有最新资讯和活动</div> 
+						<div class="home-frm-logo-hr-2 logo5">   
+							<center> 
+								 <a onclick="track('home-page-click-wb-icon');" href="http://www.weibo.com/5973559206/profile?topnav=1&wvr=6" class="top-links-27" target="_blank"><img class="icon-white-on-hover" id="home_wb" src="img/icon-wb_white.png" alt=""></a> 
+								 <a href="javascript:void(0)" onclick="track('home-page-click-wb-icon');return myLS1Overlay.show();" class="home-frm-logo-hr-2-end" target="_blank"><img class="icon-white-on-hover" id="home_wc" src="img/icon-wc_white.png" alt=""></a> 
+							</center>
+						</div>  
+				</div> 
+				</div> 
+				</div> 
+				</div> 
+			</div>  
+		</div>  
+	</div>   
+	<div id="kvgroup">  
+		<section class="scroll-section" id="section01" style=""> 
+			<div class="kvimg"><img src="img/home/img01.png" /></div>
+		</section>
+		<section class="scroll-section" id="section02" style="">
+			<div class="kvimg kv2"><img src="img/home/img02.png" /></div>
+		</section>
+		<section class="scroll-section" id="section03" style="">
+			<div class="kvimg kv3"><img src="img/home/img03.png" /></div>
+		</section>
+		<section class="scroll-section" id="section04" style="">
+			<div class="kvimg kv4"><img src="img/home/img04.png" /></div>
+		</section>
+		<section class="scroll-section" id="section05" style="">
+			<div class="kvimg kv5"><img src="img/home/img05.png" /></div>
+		</section>  
+	</div>
+	<div class="home-down-arrow" style="display:none;"><img style="" src="img/home/arrow-mobile.gif"/></div>
+	
+	<!--------footer开始-------->   
+		<div class="sub-main footer subpagefooter"  > 
+			<div class="macji" id="ori-footer"> 
+				<ul class="macji-skin">  
+					<li class="footer-copyright" style="border-left:none;">© 2017 EVOLUTION HEALTH沪ICP备15030014号-2</li> 
+					
+					<li class="footer-first footer-link"><a onclick="track('footer-click-privacy');" href="http://www.healthy-lifespace.com/privacy/">法律声明</a></li>
+					<li class="footer-link"><a onclick="track('footer-click-australia');" href="http://www.healthy-lifespace.com/" target="_blank" >访问澳洲网页<img style="margin-left:5px;" src="img/copyright_AustraliaFlag.png"/></a></li> 
+				</ul> 
+			</div>
+			<br/>
+			<div class="macji" id="empty-copyright">
+				<ul class="macji-skin"> 
+				</ul> 
+			</div>
+		</div>
+	<!--------footer结束--------> 
+		
+	</div>  
+<script src="js/jquery1.9.1.min.js"></script>    
+<script src="js/jquery.touchSwipe.min.js"></script>    
+<script src="js/Velocityjs.js"></script> 
+<script src="js/oldmain.js"></script><script src="script/main.js"></script>  
+<script> 
+		
+		window.init = false;
+		$(document).ready(function() {
+			if (!window.init) {
+				
+				window.init = true; 
+				new ZmainHome(); 
+			}
+		}); 
+</script>    
+<div style="display:none;">
+	<script src="https://s11.cnzz.com/z_stat.php?id=1261464287&web_id=1261464287" language="JavaScript"></script>
+</div>   
+</body>  
+</html>

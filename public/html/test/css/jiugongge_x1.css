@@ -1,0 +1,22 @@
+
+/*为了让看得简单清晰点，CSS跟XHTML代码就不写那么复杂了*/
+div,span{display:block;background-image:url(../images/bg2.png);}/*我懒所以直接div,span算了*/
+
+.mdl{overflow:hidden;position:relative;width:70%;padding:52px 28px 28px;background:#657B93;}
+.mdl div{position:absolute;z-index:2;}
+h3{position:absolute;top:20px;z-index:3;margin:0;}
+
+   .mdl_t_l{top:0;left:0;width:28px;height:52px;background-position:-28px -52px;}
+div.mdl_t_c{top:0;z-index:1;width:100%;height:52px;background-position:-56px 0;}
+   .mdl_t_c span{height:52px;background-position:-112px 0;}
+   .mdl_t_r{top:0;right:0;width:28px;height:52px;background-position:-55px -52px;}
+
+div.mdl_c_l{top:0;left:0;z-index:1;width:28px;background-position:0 -52px;}
+   .mdl_c_l span{width:28px;height:2000px;background-position:0 -132px;}
+div.mdl_c_r{top:0;right:0;z-index:1;width:28px;background-position:right top;}
+   .mdl_c_r span{width:28px;height:2000px;background-position:right -80px;}
+
+   .mdl_b_l{bottom:0;left:0;width:28px;height:28px;background-position:-28px -104px;}
+div.mdl_b_c{bottom:0;z-index:1;width:100%;height:28px;background-position:0 -133px;}
+   .mdl_b_c span{bottom:0;height:28px;background-position:-56px -133px;}
+   .mdl_b_r{bottom:0;right:0;width:28px;height:28px;background-position:-55px -104px;}
