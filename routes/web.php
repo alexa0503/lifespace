@@ -45,7 +45,7 @@ Route::get('page/{page}', function (\App\Page $page) {
 });
 Route::get('items/{category}/{id?}', function($category_id=null,$id=null){
     $categories = \App\Category::all();
-    $page = \App\Category::find(2);
+    $page = \App\Page::find(2);
     if( null == $id){
         $category = \App\Category::find($category_id);
         return view('category', [
