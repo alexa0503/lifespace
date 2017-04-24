@@ -82,6 +82,7 @@ class ItemController extends Controller
             $item->tmall_url = $request->input('tmall_url');
             $item->description = $request->input('description');
             $item->template = $request->input('template');
+            $item->icon = $request->input('icon');
             $item->save();
 
             foreach(config('custom.attributes') as $name => $attribute){
@@ -188,6 +189,7 @@ class ItemController extends Controller
             $item->tmall_url = $request->input('tmall_url');
             $item->description = $request->input('description');
             $item->template = $request->input('template');
+            $item->icon = $request->input('icon');
             $item->save();
 
             \App\ItemAttribute::where('item_id',$item->id)->delete();

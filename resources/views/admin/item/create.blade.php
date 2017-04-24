@@ -86,6 +86,15 @@
                                             <label class="help-block" for="image"></label>
                                         </div>
                                     </div>
+                                <!-- End .form-group  -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 col-md-3 control-label" for="">ICON</label>
+                                    <div class="col-lg-10 col-md-9">
+                                        <input id="file-explorer" name="file-icon" type="file" >
+                                        <input name="icon" value="" type="hidden" />
+                                        <label class="help-block" for="image_bkg"></label>
+                                    </div>
+                                </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">页面模板</label>
@@ -156,7 +165,24 @@ $(document).ready(function() {
             preview.append('<img src="'+event.target.result+'" />');
         }
         reader.readAsDataURL(this.files[0]);
-    })
+    });
+    var file_config_bkg = {
+            theme: 'explorer',
+            uploadUrl: '{{url("admin/file/upload/file-icon")}}',
+            uploadAsync: false,
+            maxFileCount: 1,
+            allowedFileTypes: ["image", "video"],
+            overwriteInitial: true,
+            initialPreviewAsData: true,
+            fileActionSettings: {
+                showUpload: false
+            }
+        };
+    $("#file-explorer").fileinput(file_config_bkg).on('filebatchuploadsuccess', function(event, data) {
+        $('input[name="icon"]').val(data.response.initialPreviewConfig[0].value);
+    }).on('filedeleted',function () {
+        $('input[name="icon"]').val('');
+    });
 
 });
 </script>

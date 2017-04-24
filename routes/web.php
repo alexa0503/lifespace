@@ -55,9 +55,29 @@ Route::get('items/{category}/{id?}', function($category_id=null,$id=null){
         ]);
     }
     else{
-        return view('item');
+        $item = \App\Item::find($id);
+        return view('item', [
+            'page' => $page,
+            'categories' => $categories,
+            'item' => $item,
+        ]);
     }
-
+});
+Route::get('item/{id}/{method?}', function($id, $method = 'next'){
+    if($method == 'next'){
+        $item = \App\Item::where('id', '>', $id)->orderBy('id', 'ASC')->first();
+        if( $item == null ){
+            $item = \App\Item::orderBy('id', 'ASC')->first();
+        }
+    }
+    else{
+        $item = \App\Item::where('id', '<', $id)->orderBy('id', 'DESC')->first();
+        if( $item == null ){
+            $item = \App\Item::orderBy('id', 'DESC')->first();
+        }
+    }
+    $category_id = count($item->categories) > 0 ? $item->categories[0]->id : 1;
+    return redirect(url('items/'.$category_id.'/'.$item->id));
 });
 //admin
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function ($router) {

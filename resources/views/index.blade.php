@@ -4,6 +4,7 @@
     <div class="main-body">
     @include('header')
     @include('qr')
+    @include('frame')
         <div id="father-bg" style="overflow:hidden"></div>
     <!--<img src="{{asset('assets/img/t3.png')}}" id="arrow-down" style="width: 150px;position: absolute;bottom: 10px;left: 50%;margin-left: -75px;"></img>
         <img src="{{asset('assets/img/t4.png')}}" id="arrow-top" style="width: 60px;position: absolute;bottom: 40px;right: 40px;"></img>-->

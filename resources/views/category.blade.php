@@ -7,7 +7,6 @@
     @include('qr')
     <div id="content">
        @include('kv', ['bkg_class'=>'bgblue'])
-
         <div id="wrapper">
             <div id="main">
                 <div class="sub-main produce-select-pp">
@@ -26,60 +25,18 @@
                         <!--<div id="row" class=" col-sm-offset-2 col-sm-8  col-md-6  col-md-offset-3 outout">   -->
                         <!------------------LINE1------------------->
                         @foreach($items as $item)
-                            <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail01.html">
+                            <div class="  col-sm-4  col-xs-6 produce-cell">
+                                <a href="{{url('items/'.Request::segment(2).'/'.$item->id)}}">
                                     <div class="">
-                                        <div class="bottle-name color-black">孕期和哺乳期益生菌</div>
-                                        <div class="bottle-pic"><img src="{{asset('assets/img/list/p2/1.png')}}"></div>
-                                        <div class="bottle-txt">包装规格 – 60粒胶囊</div>
+                                        <div class="bottle-name color-black">{{$item->name}}</div>
+                                        <div class="bottle-pic"><img src="{{asset($item->thumbnail)}}"></div>
+                                        <div class="bottle-txt">{{$item->getItemAttribute('specification')->content}}</div>
                                         <center><div class="bottle-line"></div></center>
                                     </div></a>
                             </div><!-- /box -->
                         @endforeach
-
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail11.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">孕妇和哺乳期DHA+</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/2.png"></div>
-                                    <div class="bottle-txt">包装规格 – 60粒软胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail07.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">泌尿生殖盾益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/3.png"></div>
-                                    <div class="bottle-txt">包装规格 – 60粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail04.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">成人广谱益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/4.png"></div>
-                                    <div class="bottle-txt">包装规格 – 30，60和90粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail05.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">成人640亿益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/5.png"></div>
-                                    <div class="bottle-txt">包装规格 – 30粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-
-
                     </div>
-
-
-
-
-
-
                 </div>
-
-
             </div>
 
         </div>
@@ -90,12 +47,12 @@
     <script>
         about_ex_init();
         window.init = false;
-        $(document).ready(function () {
+        $(document).ready(function() {
             if (!window.init) {
                 window.init = true;
-                window.listID = 0;
+                window.listID = 2;
                 new ZmainSubpage();
-                window.myMenu.doline(1);
+                window.myMenu.doline(0);
             }
         });
     </script>

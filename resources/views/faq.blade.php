@@ -5,6 +5,7 @@
 @section('body')
     @include('header')
     @include('qr')
+    @include('frame')
     <div id="content">
         @include('kv', ['bkg_class'=>'bgrosepink'])
         <div id="wrapper">

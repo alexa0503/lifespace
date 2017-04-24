@@ -2,20 +2,19 @@
 
 return [
     'templates' => [
-        1 => '红色',
-        '黄色',
-        '棕色',
-        '蓝色',
-        '黑色',
-        '暗红',
-        '绿色',
-        '紫蓝',
+        'bgred' => '红色',
+        'bgyellow' => '黄色',
+        'bgbrown' => '棕色',
+        'bgblue' => '蓝色',
+        'bggray' => '黑色',
+        'bggreen' => '绿色',
     ],
     'attributes' => [
         'specification' => '包装规格',
         'features' => '孕期功效/产品特点',
-        'method' => '服用方法/使用建议',
-        'contains' => 'contains',
+        'contains' => 'contains/每粒胶囊含',
+        'method' => '服用方法/使用建议/使用说明',
+        'artg' => '澳大利亚治疗商品管理局TGA编号',
     ],
     'blocks' => [
         'kv' => 'KV',

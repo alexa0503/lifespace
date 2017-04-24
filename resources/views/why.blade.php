@@ -37,7 +37,7 @@
                     @endphp
                 <div id="index-banner" class="parallax-container" style="height:656px;">
                     <div class="">
-                        <div class="container" style="width;100%;">
+                        <div class="container" style="width:100%;">
                             <center>
                                 <div class="blue-frame" style="margin-top:50px;visibility:hidden;"><img style="width:1031px;height:556px;" src="{{asset('assets/img/232_WhyProbiotics/screen2_frame_whyProbiotics46.png')}}"  /></div>
                             </center>

@@ -7,6 +7,7 @@
     @include('qr')
     <div id="content">
         @include('kv', ['bkg_class'=>'bggreen'])
+        @include('frame')
         <div id="wrapper">
             <div id="main-about">
                 @foreach($page->graphic as $graphic)

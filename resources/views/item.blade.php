@@ -1,124 +1,143 @@
 @extends('layout')
-@section('bodyStyle')class="producelist subpage"@endsection
+@section('bodyStyle')class="detail {{$item->template ? : 'bgred'}}"@endsection
 @section('styles')
 @endsection
 @section('body')
     @include('header')
-    @include('qr')
-    <div id="content">
-        @php
-            $kv = count($page->kvs) > 0 ? $page->kvs[0] : null;
-        @endphp
-        <div id="header-container" class="height-500 header-container-class bgblue">
-            @if($kv)
-                <div style="background-image: url('{{asset($kv->header_image)}}'); transform: translate3d(0px, 0px, 0px);" id="header-parallax" class="height-500 header-parallax-class "></div>
-
-            <div class="header-outer">
-                <div class="header-inner">
-                    <div class="header-title"><img style="width:212px;height:41px;" src="{{asset('assets/img/kv/logo.png')}}"></div>
-                    <div id="header-subtitle"><img style="width:29px;height:1px;" src="{{asset('assets/img/kv/screen1_line_1.png')}}"></div>
-                    <div class="header-subtitle-subpage">{{$kv->title}}</div>
-                    <div id="header-subtitle"><img style="width:29px;height:1px;" src="{{asset('assets/img/kv/screen1_line_1.png')}}"></div>
-                </div>
-            </div>
-        @endif
-            <!--------外框开始-------->
-            <div class="Frames-top" style="position:absolute;width: 100%; height: 25px; left: 0px; top: -3px;  background-image: url('{{asset("assets/img/frame/Frames_top.png")}}');"></div>
-            <div class="Frames-bottom" style="position:absolute;width: 100%; height: 25px; left: 0px; bottom: 0px;  background-image: url('{{asset("assets/img/frame/Frames_bottom.png")}}')');"></div>
-            <div class="Frames-left" style="position:absolute;width: 25px; height: 100%; left: 0px; top: -4px;  background-image: url('{{asset("assets/img/frame/Frames_left.png")}}')');"></div>
-            <div class="Frames-right" style="position:absolute;width: 25px; height: 100%; right: 0px; top: -4px;  background-image: url('{{asset("assets/img/frame/Frames_right.png")}}')');"></div>
-            <!--------外框结束-------->
+    <div class="main-body detail-body" style="border:0px solid white;border-collapse:collapse;">
+        <div id="father-bg" class="bg-color" style="overflow:hidden"> </div>
+        <div class="detail-frame-outer">
+        @include('frame')
         </div>
-
+    <div id="content">
         <div id="wrapper">
-            <div id="main">
+            <div id="main-detail">
 
-                <div class="sub-main produce-select-pp">
-                    <div class="produce-select">
-                        <div class="macji">
-                            <ul class="macji-skin">
 
-                                <li><a class="color-black" onclick="track('列表页-点击菜单');" href="producelist1.html">成人</a></li>
-                                <li><a class="color-gray" onclick="track('列表页-点击菜单');" href="producelist2.html">孕妇</a></li>
-                                <li><a class="color-black" onclick="track('列表页-点击菜单');" href="producelist3.html">婴幼儿</a></li>
-                                <li><a class="color-black" onclick="track('列表页-点击菜单');" href="producelist4.html">儿童</a></li>
-                            </ul>
+                <div class="container-fluid detailblock">
+                    <div id="row" class="col-md-9 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-offset-0  col-xs-12">
+                        <!--<div id="row" class=" col-sm-offset-2 col-sm-8  col-md-6  col-md-offset-3 outout">   -->
+                        <!------------------LINE1------------------->
+                        <div class="  col-sm-4  col-sm-offset-0 col-xs-10 col-xs-offset-1 produce-cell">
+                            <div class="">
+                                <div class="bottle-pic" ><img style='width:100%' src="{{asset($item->image)}}"></div>
+                            </div>
+                        </div><!-- /box -->
+
+
+                        <div class="col-sm-7 col-xs-12 produce-cell" style="text-align:left;">
+                            <div class="detail-block" style="height:300px;">
+                                <div class="boxscroll asscroll">
+                                    <div id="block_top" class="abs" style="left:53px;top:24px;">
+                                        <div class="block_top_logo1">
+                                            <div class="title-icon1"></div>
+                                            @if($item->icon)
+                                            <div class="title-icon2" style="background-image:url('{{asset($item->icon)}}')"></div>
+                                            @endif
+                                        </div>
+                                        <div class="title">{{$item->name}}</div>
+                                        <div id="block_top_dot">
+                                            <div class="txt-dot"></div>
+                                            <div class="txt-dot"></div>
+                                            <div class="txt-dot"></div>
+                                        </div>
+                                    </div>
+                                    <div id="block_ctt" class="abs" style="left:53px;top:225px;">
+                                        <div class="block_ctt_txt" >
+                                    @php
+                                    $description = explode("\n", $item->description);
+                                    @endphp
+                                    @foreach($description as $v)
+                                        @if($v == '')
+                                            <br/>
+                                        @else
+                                            <p>{{$v}}</p>
+                                        @endif
+                                    @endforeach
+                                            <br/>
+                                            <p>{{$item->getItemAttribute('specification')->title}} – {{$item->getItemAttribute('specification')->content}}</p>
+                                            <br/>
+                                            <h3>{{$item->getItemAttribute('features')->title}}</h3>
+                                            <ul class="ul-gou">
+                                            @php
+                                                $content = explode("\n", $item->getItemAttribute('features')->content);
+                                            @endphp
+                                                @foreach($content as $v)
+                                                <li>{{$v}}</li>
+                                                @endforeach
+                                            </ul>
+                                            <br/>
+                                            <h3>{{$item->getItemAttribute('contains')->title}}</h3>
+                                            @php
+                                                $content = explode("\n", $item->getItemAttribute('contains')->content);
+                                            @endphp
+                                            @foreach($content as $v)
+                                                <p>{{$v}}</p>
+                                            @endforeach
+                                            <br/>
+                                            <h3>{{$item->getItemAttribute('method')->title}}</h3>
+                                            <ul class="ul-gou">
+                                                @php
+                                                    $content = explode("\n", $item->getItemAttribute('method')->content);
+                                                @endphp
+                                                @foreach($content as $v)
+                                                    <li>{{$v}}</li>
+                                                @endforeach
+                                            </ul>
+                                            <p>{{$item->getItemAttribute('artg')->title}}<a href="https://www.tga.gov.au/artg/artg-id-{{$item->getItemAttribute('artg')->content}}" target="_blank">{{$item->getItemAttribute('artg')->content}}</a></p>
+                                            <br/>
+                                            <h3>在以下电商平台搜索“Life-Space”产品</h3>
+                                            <div class="detail-link-btn">
+                                                <a id="bttm" href="javascript:void(0)" onclick="track('详细页-天猫按钮');myQrcode.jump('{{$item->tmall_url}}');" target="_blank"><div class="imgtm"></div></a>
+
+                                            </div>
+                                            <div style="clear:both;"></div>
+                                            <div class="clear-float"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="block_bar" class="col-sm-1 produce-cell">
+                            <div class="detail-box-btn" >
+                                <a onclick="track('详细页-返回按钮');" href="{{url('items/'.Request::segment(2))}}">
+                                    <div id="btnBack"><img src="{{asset('assets/img/detail/ViewAll1.png')}}"/></div>
+                                </a>
+                            </div>
+                            <div class="detail-box-btn" >
+                                <a onclick="track('详细页-上一页按钮');" href="{{url('item/'.Request::segment(3).'/pre')}}">
+                                    <div id="btnPre"><img src="{{asset('assets/img/detail/Pre1.png')}}"/></div>
+                                </a>
+                            </div>
+                            <div class="detail-box-btn" >
+                                <a onclick="track('详细页-下一页按钮');" href="{{url('item/'.Request::segment(3).'/next')}}">
+                                    <div id="btnNxt"><img src="{{asset('assets/img/detail/Nxt1.png')}}"/></div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" style="margin-top:0px;position:relative;">
-                    <div id="row" class=" col-sm-offset-2 col-sm-8 col-xs-offset-0  col-xs-12 outout">
-                        <!--<div id="row" class=" col-sm-offset-2 col-sm-8  col-md-6  col-md-offset-3 outout">   -->
-                        <!------------------LINE1------------------->
-
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail01.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">孕期和哺乳期益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/1.png"></div>
-                                    <div class="bottle-txt">包装规格 – 60粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail11.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">孕妇和哺乳期DHA+</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/2.png"></div>
-                                    <div class="bottle-txt">包装规格 – 60粒软胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail07.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">泌尿生殖盾益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/3.png"></div>
-                                    <div class="bottle-txt">包装规格 – 60粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail04.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">成人广谱益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/4.png"></div>
-                                    <div class="bottle-txt">包装规格 – 30，60和90粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-                        <div class="  col-sm-4  col-xs-6 produce-cell"><a href="detail05.html">
-                                <div class="">
-                                    <div class="bottle-name color-black">成人640亿益生菌</div>
-                                    <div class="bottle-pic"><img src="img/list/p2/5.png"></div>
-                                    <div class="bottle-txt">包装规格 – 30粒胶囊</div>
-                                    <center><div class="bottle-line"></div></center>
-                                </div></a>
-                        </div><!-- /box -->
-
-
-                    </div>
-
-
-
-
-
-
-                </div>
-
-
             </div>
-
         </div>
     </div>
     @include('footer')
 @endsection
 @section('scripts')
+    <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.nicescroll.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.fitvids.js')}}"></script>
+    <script src="{{asset('assets/js/bxslider.min.js')}}"></script>
+    <script src="{{asset('assets/js/oldmain.js')}}"></script>
+    <script src="{{asset('assets/script/main.js')}}"></script>
     <script>
         about_ex_init();
         window.init = false;
-        $(document).ready(function () {
+        $(document).ready(function() {
             if (!window.init) {
                 window.init = true;
                 window.listID = 0;
                 new ZmainSubpage();
-                window.myMenu.doline(1);
+                window.myMenu.doline(0);
             }
         });
     </script>
