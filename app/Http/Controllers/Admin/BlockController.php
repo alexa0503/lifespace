@@ -29,9 +29,12 @@ class BlockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($page)
     {
-        //
+        return view('admin/block/create', [
+            'blocks' => config('custom.blocks'),
+            'page' => \App\Page::find($page),
+        ]);
     }
 
     /**
@@ -40,9 +43,30 @@ class BlockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlockPost $request)
+    public function store(BlockPost $request, $page)
     {
-        //
+        $block = new \App\Block;
+
+        DB::beginTransaction();
+        try{
+            $block->page_id = $page;
+            $block->name = $request->input('name');
+            $block->title = $request->input('title');
+            $block->content = $request->input('content') ? : '';
+            $block->description = $request->input('description');
+            $block->is_posted = $request->input('is_posted');
+            $block->sort_id = $request->input('sort_id') ?: 0;
+            $block->header_image = $request->input('header_image');
+            $block->bkg_image = $request->input('bkg_image');
+            $block->gallery = $request->input('gallery');
+            $block->save();
+            DB::commit();
+
+        }catch (Exception $e){
+            DB::rollBack();
+            return Response(['gallery[]' => $e->getMessage()], 422);
+        }
+        return [];
     }
 
     /**
@@ -68,6 +92,7 @@ class BlockController extends Controller
         return view('admin/block/edit', [
             'row' => $row,
             'blocks' => config('custom.blocks'),
+            'page' => \App\Page::find($page),
         ]);
     }
 
@@ -95,7 +120,7 @@ class BlockController extends Controller
             $block->save();
             DB::commit();
 
-        }catch (Exception $e){
+        }catch (\Exception $e){
             DB::rollBack();
             return Response(['gallery[]' => $e->getMessage()], 422);
         }
@@ -109,9 +134,10 @@ class BlockController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($page, $id)
     {
-        //
+        \App\Block::destroy($id);
+        return ['ret'=>0];
     }
 
     public function imageDelete()

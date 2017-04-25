@@ -230,6 +230,16 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            \App\ItemCategory::where('item_id', $id)->delete();
+            \App\ItemAttribute::where('item_id', $id)->delete();
+            \App\Item::destroy($id);
+            DB::commit();
+        }catch (Exception $e){
+            DB::rollBack();
+            return Response(['ret'=>1001,'msg'=>$e->getMessage()]);
+        }
+        return Response(['ret'=>0,'msg'=>'']);
     }
 }

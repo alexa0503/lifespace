@@ -1,6 +1,8 @@
 @extends('admin.layout')
-
 @section('content')
+    @php
+    $name = Request::get('name') ? : 'graphic';
+    @endphp
     <div class="page-content sidebar-page right-sidebar-page clearfix">
         <!-- .page-content-wrapper -->
         <div class="page-content-wrapper">
@@ -8,7 +10,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>{{$page->title}} - 区块管理 - 编辑</h2>
+                        <h2>{{$page->title}} - 区块管理 - 新增</h2>
                     </div>
                 </div>
                 <!-- Start .row -->
@@ -18,24 +20,24 @@
                         <div class="panel panel-default">
                             <!-- Start .panel -->
                             <div class="panel-body pt0 pb0">
-                                {{ Form::open(array('route' => ['page.block.update', $row->page_id,$row->id], 'class'=>'form-horizontal group-border stripped', 'method'=>'PUT', 'id'=>'form')) }}
-                                    <!--<div class="form-group">
+                                {{ Form::open(array('route' => ['page.block.store', Request::segment(3)], 'class'=>'form-horizontal group-border stripped', 'id'=>'form')) }}
+                                    <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">区块种类</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <select name="name" class="select2 form-control">
+                                            <select id="name" name="name" class="select2 form-control">
                                                 <option value="">请选择区块种类</option>
-                                                @foreach ($blocks as $name=>$block)
-                                                <option value="{{$name}}" @if ($name == $row->name){{'selected="selected"'}}@endif>{{$block}}</option>
+                                                @foreach ($blocks as $key=>$block)
+                                                <option value="{{$key}}" @if ($key == $name){{'selected="selected"'}}@endif>{{$block}}</option>
                                                 @endforeach
                                             </select>
                                             <label class="help-block" for="name"></label>
                                         </div>
-                                    </div>-->
+                                    </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">标题</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="title" class="form-control" value="{{$row->title}}">
+                                            <input type="text" name="title" class="form-control" value="">
                                             <label class="help-block" for="title"></label>
                                         </div>
                                     </div>
@@ -43,63 +45,59 @@
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">描述</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="description" class="form-control" rows="5" placeholder="请输入">{{$row->description}}</textarea>
+                                            <textarea name="description" class="form-control" rows="5" placeholder="请输入"></textarea>
                                             <label class="help-block" for="description"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
-                                    @if ($row->name == 'graphic')
+                                    @if ($name == 'graphic')
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">内容</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="content" class="form-control" rows="5" placeholder="请输入">{{$row->content}}</textarea>
+                                            <textarea name="content" class="form-control" rows="5" placeholder="请输入"></textarea>
                                             <label class="help-block" for="content"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     @endif
-                                    @if ($row->name == 'kv' || $row->name == 'graphic')
+                                    @if ($name == 'kv' || $name == 'graphic')
                                     <div class="form-group">
                                         <label class="col-lg-2 col-md-3 control-label" for="">头图</label>
                                         <div class="col-lg-10 col-md-9">
                                             <input id="header-explorer" name="file1" type="file" multiple >
-                                            <input name="header_image" value="{{$row->header_image}}" type="hidden" />
+                                            <input name="header_image" value="" type="hidden" />
                                             <label class="help-block" for="image"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     @endif
-                                    @if ($row->name == 'graphic')
+                                    @if ($name == 'graphic')
                                     <div class="form-group">
                                         <label class="col-lg-2 col-md-3 control-label" for="">背景图/大图</label>
                                         <div class="col-lg-10 col-md-9">
                                             <input id="bkg-explorer" name="file2" type="file" multiple >
-                                            <input name="bkg_image" value="{{$row->bkg_image}}" type="hidden" />
+                                            <input name="bkg_image" value="" type="hidden" />
                                             <label class="help-block" for="image_bkg"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     @endif
-                                    @if ($row->name == 'gallery')
+                                    @if ($name == 'gallery')
                                     <div class="form-group">
                                         <label class="col-lg-2 col-md-3 control-label" for="">图库</label>
                                         <div class="col-lg-10 col-md-9" id="div-gallery">
                                             <input id="gallery-explorer" name="file3[]" type="file" multiple >
                                             <label class="help-block" for="gallery[]"></label>
-                                            @if($row->gallery && is_array($row->gallery))
-                                                @foreach($row->gallery as $image)
-                                            <input name="gallery[]" value="{{$image}}" type="hidden" />
-                                                @endforeach
-                                            @endif
+
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     @endif
-                                    @if($row->name == 'video' || $row->name == 'kv')
+                                    @if($name == 'video' || $name == 'kv')
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">链接</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="link" class="form-control" value="{{$row->link}}">
+                                            <input type="text" name="link" class="form-control" value="">
                                             <label class="help-block" for="link"></label>
                                         </div>
                                     </div>
@@ -107,7 +105,7 @@
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">排序</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="sort_id" class="form-control" value="{{$row->sort_id}}">
+                                            <input type="text" name="sort_id" class="form-control" value="">
                                             <label class="help-block" for="sort_id"></label>
                                         </div>
                                     </div>
@@ -116,8 +114,8 @@
                                         <label for="text" class="col-lg-2 col-md-3 control-label">是否发布</label>
                                         <div class="col-lg-10 col-md-9">
                                             <select name="is_posted" class="form-control">
-                                                <option value="1"@if($row->is_posted == '1'){{' selected="selected"'}}@endif>是</option>
-                                                <option value="0"@if($row->is_posted == '0'){{' selected="selected"'}}@endif>否</option>
+                                                <option value="1">是</option>
+                                                <option value="0" selected="selected">否</option>
                                             </select>
                                             <label class="help-block" for="is_posted"></label>
                                         </div>
@@ -149,12 +147,16 @@
 <script>
 $(document).ready(function() {
     $('.select2').select2();
+    $('#name').on('change', function (){
+        var v = $(this).val();
+        location.href = '{{route('page.block.create',['page'=>Request::segment(3)])}}' + '?name=' + v;
+    });
     $('#form').ajaxForm({
         dataType: 'json',
         success: function() {
             $('#form .form-group .help-block').empty();
             $('#form .form-group').removeClass('has-error');
-            location.href='{{route("page.block.index",["page"=>$row->page_id])}}';
+            location.href='{{route("page.block.index",["page"=>Request::segment(3)])}}';
         },
         error: function(xhr){
             try {
@@ -179,7 +181,7 @@ $(document).ready(function() {
 
         }
     });
-    @if ($row->name == 'kv' || $row->name == 'graphic')
+    @if ($name == 'kv' || $name == 'graphic')
     var file_config_header = {
         theme: 'explorer',
         uploadUrl: '{{url("admin/file/upload/file1")}}',
@@ -192,18 +194,6 @@ $(document).ready(function() {
             showUpload: false
         }
     };
-            @if($row->header_image)
-    var obj1 = {
-            initialPreview: [
-                "{{asset($row->header_image)}}"
-            ],
-            initialPreviewConfig: [
-                {caption: "", size: "{{ filesize($row->header_image) }}", width: "400px", url: "{{url('admin/file/delete')}}", key: 1,extra:{name:'{{$row->header_image}}'}}
-            ]
-        };
-    $.extend( file_config_header, obj1 );
-            @endif
-
     $("#header-explorer").fileinput(file_config_header).on('filebatchuploadsuccess', function(event, data) {
         $('input[name="header_image"]').val(data.response.initialPreviewConfig[0].value);
     }).on('filedeleted',function () {
@@ -211,7 +201,7 @@ $(document).ready(function() {
     });
     @endif
 
-    @if ($row->name == 'graphic')
+    @if ($name == 'graphic')
     var file_config_bkg = {
         theme: 'explorer',
         uploadUrl: '{{url("admin/file/upload/file2")}}',
@@ -225,17 +215,7 @@ $(document).ready(function() {
         }
     };
 
-    @if($row->bkg_image)
-    var obj2 = {
-        initialPreview: [
-            "{{asset($row->bkg_image)}}"
-        ],
-        initialPreviewConfig: [
-            {caption: "", size: "{{ filesize($row->bkg_image) }}", width: "400px", url: "{{url('admin/file/delete')}}", key: 1,extra:{name:'{{$row->bkg_image}}'}}
-        ]
-    };
-    $.extend( file_config_bkg, obj2 );
-    @endif
+
     $("#bkg-explorer").fileinput(file_config_bkg).on('filebatchuploadsuccess', function(event, data) {
         $('input[name="bkg_image"]').val(data.response.initialPreviewConfig[0].value);
     }).on('filedeleted',function () {
@@ -244,7 +224,7 @@ $(document).ready(function() {
     @endif
 
 
-    @if ($row->name == 'gallery')
+    @if ($name == 'gallery')
     var file_config_gallery = {
         theme: 'explorer',
         uploadUrl: '{{url("admin/file/upload/file3")}}',
@@ -256,19 +236,7 @@ $(document).ready(function() {
             showUpload: false
         }
     };
-    @if($row->gallery && is_array($row->gallery))
-        var preview = [];
-        var config = [];
-        @foreach($row->gallery as $image)
-            preview.push('{{asset($image)}}');
-            config.push({caption: "", size: "{{ filesize($image) }}", width: "400px", url: "{{url('admin/file/delete')}}", key: '{{$image}}',extra:{name:'{{$image}}'}});
-        @endforeach
-    var obj3 = {
-        initialPreview: preview,
-        initialPreviewConfig: config
-    };
-    $.extend( file_config_gallery, obj3 );
-    @endif
+
     $("#gallery-explorer").fileinput(file_config_gallery).on('filebatchuploadsuccess', function(event, data) {
         console.log(data.response);
         $.each(data.response.initialPreviewConfig, function (index, value) {

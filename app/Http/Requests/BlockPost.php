@@ -24,7 +24,7 @@ class BlockPost extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|max:120',
         ];
     }
     /**
@@ -35,7 +35,7 @@ class BlockPost extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '请输入产品名称',
+            'title.required' => ' 请输入标题',
             'thumbnail.required'=>'请选择产品缩略图',
             'image.required'=>'请选择产品详图',
             'thumbnail.meimes'=>'图片格式只能为jpeg,bmp,png,gif',

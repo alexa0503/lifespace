@@ -18,11 +18,15 @@ class MenuMiddleware
     {
         Menu::make('adminNavbar', function($menu){
             $menu->add('控制面板',['route'=>'admin_dashboard']);
-            $page = $menu->add('页面管理','#');
+            //$page = $menu->add('页面管理','#');
             $pages = \App\Page::all();
             foreach($pages as $v){
-                $page->add($v->title, ['url'=>route('page.block.index',['page'=>$v->id])]);
+                $t = $menu->add($v->title, ['url'=>route('page.block.index',['page'=>$v->id])]);
+                $t->add('查看', ['url'=>route('page.block.index',['page'=>$v->id])]);
+                $t->add('新增', ['url'=>route('page.block.create', ['page'=>$v->id])]);
+
             }
+
             $item = $menu->add('产品管理','#');
             $item->add('查看', ['url'=>route('item.index')]);
             $item->add('添加', ['url'=>route('item.create')]);
