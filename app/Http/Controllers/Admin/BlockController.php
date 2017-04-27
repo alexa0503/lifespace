@@ -21,6 +21,7 @@ class BlockController extends Controller
         return view('admin/block/index', [
             'rows' => $rows,
             'blocks' => config('custom.blocks'),
+            'page' => \App\Page::find($page),
         ]);
     }
 
@@ -64,7 +65,7 @@ class BlockController extends Controller
 
         }catch (Exception $e){
             DB::rollBack();
-            return Response(['gallery[]' => $e->getMessage()], 422);
+            return response(['gallery[]' => $e->getMessage()], 422);
         }
         return [];
     }
@@ -122,9 +123,9 @@ class BlockController extends Controller
 
         }catch (\Exception $e){
             DB::rollBack();
-            return Response(['gallery[]' => $e->getMessage()], 422);
+            return response(['gallery[]' => $e->getMessage()], 422);
         }
-        return [];
+        return response([]);
 
     }
 
@@ -137,11 +138,11 @@ class BlockController extends Controller
     public function destroy($page, $id)
     {
         \App\Block::destroy($id);
-        return ['ret'=>0];
+        return response(['ret'=>0]);
     }
 
     public function imageDelete()
     {
-        return [];
+        return response([]);
     }
 }

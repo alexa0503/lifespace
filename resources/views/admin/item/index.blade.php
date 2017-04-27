@@ -19,6 +19,20 @@
                         <!-- col-lg-12 start here -->
                         <div class="panel panel-default">
                             <!-- Start .panel -->
+                            <div class="panel-heading white-bg">
+                                <form class="form-inline" id="search-form" action="" method="get" role="form" style="margin: 4px 0;">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                        <select id="category" class="select2" name="category" style="line-height: 24px;height: 30px;">
+                                            <option value="">所有/选择</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}"{{ $category->id == Request::get('category') ? 'selected' : '' }}>{{$category->name}}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </form>
+
+                                <div class="panel-controls panel-controls-right"><a href="#" class="panel-refresh"><i class="fa fa-circle-o"></i></a><a href="#" class="toggle panel-minimize"><i class="fa fa-angle-up"></i></a><a href="#" class="panel-close"><i class="fa fa-times"></i></a></div></div>
                             <div class="panel-body">
                                 <table id="basic-datatables" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                     <thead>
@@ -64,6 +78,7 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+    //$('.select2').select2();
     $('.delete').click(function(){
         var url = $(this).attr('href');
         var obj = $(this).parents('td').parent('tr');
@@ -83,22 +98,9 @@ $(document).ready(function() {
         }
         return false;
     })
-    $('.update').click(function(){
-        var url = $(this).attr('href');
-        var obj = $(this);
-        $.ajax(url, {
-            dataType: 'json',
-            success: function(json){
-                if(json.ret == 0){
-                    location.reload();
-                }
-            },
-            error: function(){
-                alert('请求失败~');
-            }
-        });
-        return false;
-    })
+    $('#category').on('change', function () {
+        $('#search-form').submit();
+    });
 });
 </script>
 @endsection

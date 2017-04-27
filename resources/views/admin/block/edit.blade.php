@@ -8,7 +8,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>{{$page->title}} - 区块管理 - 编辑</h2>
+                        <h2>区块管理 - {{$page->title}} - 编辑</h2>
                     </div>
                 </div>
                 <!-- Start .row -->
@@ -284,12 +284,5 @@ $(document).ready(function() {
     });
     @endif
 });
-</script>
-<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
-<script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
-<script>
-    $('.article-ckeditor').ckeditor({
-        filebrowserBrowseUrl: '{!! url('filemanager/index.html') !!}'
-    });
 </script>
 @endsection

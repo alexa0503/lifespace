@@ -97,8 +97,13 @@
 <script src="{{asset('assets/admin/plugins/sortable.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/fileinput.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/themes/explorer/theme.js')}}" type="text/javascript"></script>
-
-@yield('scripts')
+<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
+<script>
+    $('.article-ckeditor').ckeditor({
+        filebrowserBrowseUrl: '{!! url('filemanager/index.html') !!}'
+    });
+</script>
 <script>
     $().ready(function () {
         $.ajaxSetup({
@@ -114,5 +119,6 @@
         $('.active').parents('ul').addClass('show');
     })
 </script>
+@yield('scripts')
 </body>
 </html>

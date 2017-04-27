@@ -186,11 +186,4 @@ $(document).ready(function() {
 
 });
 </script>
-<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
-<script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
-<script>
-    $('.article-ckeditor').ckeditor({
-        filebrowserBrowseUrl: '{!! url('filemanager/index.html') !!}'
-    });
-</script>
 @endsection

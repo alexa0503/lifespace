@@ -14,11 +14,23 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rows = \App\Item::paginate(20);
+        if( null != $request->get('category')){
+            //$rows = \App\Item::where()->paginate(20);
+            $items = \App\ItemCategory::where('category_id', $request->get('category'))->get()->map(function($item){
+                return $item->item_id;
+            })->toArray();
+            $rows = \App\Item::whereIn('id',$items)->paginate(20);
+        }
+        else{
+            $rows = \App\Item::paginate(20);
+        }
 
-        return view('admin/item/index', ['rows' => $rows]);
+        return view('admin/item/index', [
+            'rows' => $rows,
+            'categories' => \App\Category::all(),
+        ]);
     }
 
     /**
@@ -107,9 +119,9 @@ class ItemController extends Controller
             DB::commit();
         }catch (Exception $e){
             DB::rollBack();
-            return Response(['thumbnail' => $e->getMessage()], 422);
+            return response(['thumbnail' => $e->getMessage()], 422);
         }
-        return [];
+        return response([]);
     }
 
     /**
@@ -218,7 +230,7 @@ class ItemController extends Controller
             DB::rollBack();
             return Response(['thumbnail' => $e->getMessage()], 422);
         }
-        return [];
+        return response([]);
     }
 
     /**
@@ -240,6 +252,6 @@ class ItemController extends Controller
             DB::rollBack();
             return Response(['ret'=>1001,'msg'=>$e->getMessage()]);
         }
-        return Response(['ret'=>0,'msg'=>'']);
+        return response(['ret'=>0,'msg'=>'']);
     }
 }

@@ -37,7 +37,7 @@ Menu::make('headerNavbar', function ($menu) {
 */
 //页面
 Route::get('page/{page}', function (\App\Page $page) {
-    $categories = \App\Category::all();
+    $categories = \App\Category::orderBy('sort_id', 'ASC')->get();
     return view($page->alias_name, [
         'page' => $page,
         'categories' => $categories,
@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function ($router) {
         Route::resource('page.block', 'BlockController');
         Route::resource('item', 'ItemController');
         Route::resource('type.item', 'ItemTypeController');
+        Route::resource('category', 'CategoryController');
 
         Route::get('users', 'IndexController@users');
         Route::get('account', 'IndexController@account');

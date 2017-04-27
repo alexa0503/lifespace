@@ -19,17 +19,19 @@ class MenuMiddleware
         Menu::make('adminNavbar', function($menu){
             $menu->add('控制面板',['route'=>'admin_dashboard']);
             //$page = $menu->add('页面管理','#');
-            $pages = \App\Page::all();
-            foreach($pages as $v){
-                $t = $menu->add($v->title, ['url'=>route('page.block.index',['page'=>$v->id])]);
-                $t->add('查看', ['url'=>route('page.block.index',['page'=>$v->id])]);
-                $t->add('新增', ['url'=>route('page.block.create', ['page'=>$v->id])]);
-
-            }
-
+            $category = $menu->add('产品分类','#');
+            $category->add('查看', ['url'=>route('category.index')]);
+            $category->add('添加', ['url'=>route('category.create')]);
             $item = $menu->add('产品管理','#');
             $item->add('查看', ['url'=>route('item.index')]);
             $item->add('添加', ['url'=>route('item.create')]);
+            //$item->divide();
+            //$menu->add('页面管理','');
+            $page = $menu->add('页面管理', ['url'=>'#']);
+            $pages = \App\Page::all();
+            foreach($pages as $v){
+                $page->add($v->title, ['url'=>route('page.block.index',['page'=>$v->id])]);
+            }
             //$page->add('查看', 'page/view')->divide();
             //$menu->add('账户',['route'=>'admin_account']);
         });

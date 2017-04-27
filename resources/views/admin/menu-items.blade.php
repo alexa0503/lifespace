@@ -1,6 +1,7 @@
 @foreach($items as $item)
   <li@lm-attrs($item) @lm-endattrs>
-    @if($item->link) <a@lm-attrs($item->link) @lm-endattrs href="{!! $item->url() !!}">
+    @if($item->link)
+    <a@lm-attrs($item->link) @lm-endattrs href="{!! $item->url() !!}">
       {!! $item->title !!}
     </a>
     @else
