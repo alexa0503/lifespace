@@ -19,7 +19,7 @@ class Item extends Model
     }
     public function categories()
     {
-        return $this->belongsToMany('App\CateGory', 'item_categories', 'item_id', 'category_id');
+        return $this->belongsToMany('App\Category', 'item_categories', 'item_id', 'category_id');
     }
     public function getCategoryKeysAttribute($value)
     {
