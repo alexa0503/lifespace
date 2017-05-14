@@ -11,7 +11,7 @@
                 </a>
                 <ul class="sub-menu" style="width: 162px; height: 200px; left: 1131px; top: 91px;background-color:#fff;display:none;">
                     @foreach($categories as $category)
-                        <li class="sub-li"><a href="{{url('items/'.$category->id)}}" class="active">{{$category->name}}</a></li>
+                        <li class="sub-li"><a href="{{url('items/'.$category->id)}}" class="active" onclick="track('菜单-我们的产品-{{$category->name}}');">{{$category->name}}</a></li>
                     @endforeach
                 </ul>
             </li>
