@@ -43,10 +43,13 @@ Route::get('page/{page}', function (\App\Page $page) {
         'categories' => $categories,
     ]);
 });
-Route::get('items/{category}/{id?}', function($category_id=null,$id=null){
+Route::get('items/{category?}/{id?}', function($category_id=null,$id=null){
     $categories = \App\Category::all();
     $page = \App\Page::find(2);
     if( null == $id){
+        if( $category_id == null){
+            return redirect(url('/items/1'));
+        }
         $category = \App\Category::find($category_id);
         return view('category', [
             'page' => $page,

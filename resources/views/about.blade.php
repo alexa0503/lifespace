@@ -7,7 +7,7 @@
     @include('qr')
     <div id="content">
         @include('kv', ['bkg_class'=>'bggreen'])
-        @include('frame')
+
         <div id="wrapper">
             <div id="main-about">
                 @foreach($page->graphic as $graphic)
@@ -74,10 +74,14 @@
     @include('footer')
 @endsection
 @section('scripts')
+    <script src="{{asset('assets/js/jquery.nicescroll.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.touchSwipe.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.fitvids.js')}}"></script>
+    <script src="{{asset('assets/js/bxslider.min.js')}}"></script>
     <script>
         about_ex_init();
         window.init = false;
-        $(document).ready(function () {
+        $(document).ready(function() {
             if (!window.init) {
                 window.init = true;
                 window.listID = 0;

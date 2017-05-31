@@ -14,7 +14,6 @@
         </div>
     </div>
 @endif
-    @if( (Request::segment(1) == 'page' && Request::segment(2) == 'why') || (Request::segment(1) == 'items' && null == Request::segment(3)))
-        @include('frame')
-    @endif
+    @include('frame')
 </div>
+

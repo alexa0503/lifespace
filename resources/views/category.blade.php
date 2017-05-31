@@ -23,7 +23,6 @@
                 <div class="container-fluid" style="margin-top:0px;position:relative;">
                     <div id="row" class=" col-sm-offset-2 col-sm-8 col-xs-offset-0  col-xs-12 outout">
                         <!--<div id="row" class=" col-sm-offset-2 col-sm-8  col-md-6  col-md-offset-3 outout">   -->
-                        <!------------------LINE1------------------->
                         @foreach($items as $item)
                             <div class="  col-sm-4  col-xs-6 produce-cell">
                                 <a href="{{url('items/'.Request::segment(2).'/'.$item->id)}}">
