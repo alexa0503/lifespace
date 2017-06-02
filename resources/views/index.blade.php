@@ -31,7 +31,7 @@
                                 <div class="verticalWrap">
                                     <div class="vertical">
                                         <center>
-                                            <div class="home-frm-ele home-line1">{{$block->title}}</div>
+                                            <div class="home-frm-ele unselectable home-line1" unselectable="on">{{$block->title}}</div>
                                             <div class="home-frm-ele unselectable home-line2" unselectable="on">{{$block->description}}</div>
                                             @if($block->link != '#' || empty($block->link))
                                                 <div class="home-frm-ele">
@@ -44,8 +44,9 @@
                                             @else
                                                 <div class="home-frm-logo-hr-2 logo5">
                                                     <center>
-                                                        <a href="http://www.weibo.com/5973559206/profile?topnav=1&wvr=6" class="top-links-27" target="_blank"><img class="icon-white-on-hover" id="home_wb" src="{{asset('assets/img/icon-wb_yellow.png')}}" alt=""></a>
-                                                        <a href="javascript:void(0)" onclick="myLS1Overlay.show();" class="home-frm-logo-hr-2-end" target="_blank"><img class="icon-white-on-hover" id="home_wc" src="{{asset('assets/img/icon-wc_yellow.png')}}" alt=""></a>
+                                                        <a onclick="track('首页-了解更多-微博');" href="http://www.weibo.com/5973559206/profile?topnav=1&wvr=6" class="top-links-27" target="_blank"><img class="icon-white-on-hover" id="home_wb" src="{{asset('assets/img/icon-wb_white.png')}}" alt=""></a>
+                                                        <a href="javascript:void(0)" onclick="track('首页-了解更多-微信');return myLS1Overlay.show();" class="home-frm-logo-hr-2-end" target="_blank"><img class="icon-white-on-hover" id="home_wc" src="{{asset('assets/img/icon-wc_white.png')}}" alt=""></a>
+                                                        <a onclick="track('首页-了解更多-babytree');" href="http://www.babytree.com/user/showuser.php?uid=u123946148552&tab=center" class="home-frm-logo-hr-2-end" target="_blank"><img class="icon-white-on-hover" id="home_babytree" src="{{asset('assets/img/icon-babytree_white.png')}}" alt=""></a>
                                                     </center>
                                                 </div>
                                             @endif

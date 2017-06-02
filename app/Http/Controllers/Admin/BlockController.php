@@ -60,6 +60,7 @@ class BlockController extends Controller
             $block->header_image = $request->input('header_image');
             $block->bkg_image = $request->input('bkg_image');
             $block->gallery = $request->input('gallery');
+            $block->link = $request->input('link');
             $block->save();
             DB::commit();
 
@@ -118,6 +119,7 @@ class BlockController extends Controller
             $block->header_image = $request->input('header_image');
             $block->bkg_image = $request->input('bkg_image');
             $block->gallery = $request->input('gallery');
+            $block->link = $request->input('link');
             $block->save();
             DB::commit();
 
