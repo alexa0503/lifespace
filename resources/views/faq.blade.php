@@ -5,7 +5,6 @@
 @section('body')
     @include('header')
     @include('qr')
-    @include('frame')
     <div id="content">
         @include('kv', ['bkg_class'=>'bgrosepink'])
         <div id="wrapper">
@@ -15,7 +14,6 @@
     </div>
 
     <div class="faq-main">
-
         <br/>
         <h3 class="contect_us_text">如您有任何疑问，欢迎发送相关问题到指定邮箱</h3>
         <p class="contect_us_link"><a onclick="track('FAQ-发送邮件');" href="mailto:product@evolutionhealth.com.au">product@evolutionhealth.com.au</a></p>

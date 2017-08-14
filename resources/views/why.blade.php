@@ -26,18 +26,16 @@
 
         <div id="wrapper">
             <div id="main">
-
-
                 <div style="height:50px;"></div>
                 <!--第2屏-->
                 <!---------------------->
-                @if($page->graphic && count($page->graphic) > 0)
+                @if($page->graphic AND count($page->graphic) > 0)
                     @php
                     $content = explode("\n", $page->graphic[0]->content);
                     @endphp
                 <div id="index-banner" class="parallax-container" style="height:656px;">
                     <div class="">
-                        <div class="container" style="width:100%;">
+                        <div class="container">
                             <center>
                                 <div class="blue-frame" style="margin-top:50px;visibility:hidden;"><img style="width:1031px;height:556px;" src="{{asset('assets/img/232_WhyProbiotics/screen2_frame_whyProbiotics46.png')}}"  /></div>
                             </center>

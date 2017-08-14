@@ -68,7 +68,7 @@ class BlockController extends Controller
             DB::rollBack();
             return response(['gallery[]' => $e->getMessage()], 422);
         }
-        return [];
+        return response([]);
     }
 
     /**
